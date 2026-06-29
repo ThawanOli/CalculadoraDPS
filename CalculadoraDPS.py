@@ -142,14 +142,11 @@ with tab1:
 
     # Exibe o DPS Calculado em destaque
     st.metric(label="SEU DPS CALCULADO", value=format_number(user_dps))
-    
     st.markdown("---")
     st.header("Progresso Estimado")
 
     # Varre os modos de jogo e monta os relatórios e barras
     for mode_name, stages in GAME_MODES.items():
-        if mode_name == "Gate B Rank": continue # Pula o que está totalmente sem dados
-        
         total_stages = len(stages)
         passed_count = 0
         highest_passed = "Nenhuma"
