@@ -126,15 +126,14 @@ with tab1:
     with col2:
         selected_suffix = st.selectbox("Sufixo:", SUFFIX_LIST, index=12) # Padrão βB
         
-    multi_input = st.text_input("Damage Multiplier:", value="5000000")
+    multi_input = st.text_input("Damage Multiplier:", value="5M")
     fast_click = st.checkbox("Possuo Fast Click Gamepass (3.66x)", value=True)
     
-    # Processa os multiplicadores textuais se o usuário digitar M ou B
-    try:
-        multi_clean = multi_input.upper().replace('M', '000000').replace('B', '000000000')
-        damage_multi = float(multi_clean) if multi_clean else 1.0
-    except ValueError:
-        st.error("Por favor, digite um Damage Multiplier válido.")
+    # Nova lógica inteligente que aceita todas as letras do jogo
+    damage_multi = parse_requirement(multi_input)
+    
+    if damage_multi is None:
+        st.error("Por favor, digite um Damage Multiplier válido (Ex: 5M, 2.5B, 5000000).")
         damage_multi = 0.0
 
     current_power = power_num * SUFFIXES[selected_suffix] if selected_suffix in SUFFIXES else power_num
