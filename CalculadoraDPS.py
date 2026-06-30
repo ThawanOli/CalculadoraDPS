@@ -107,6 +107,12 @@ GAME_MODES = {
         ("Wave 35", "4.66 βH"), ("Wave 40", "5 βI"), ("Wave 40 (Boss)", "122.67 βI"), 
         ("Wave 45", "5.65 βJ (Predicted)"), ("Wave 50", "6.21 βK (Predicted)"), ("Wave 50 (Boss)", "Not Possible")
     ],
+    "Summer Defense": [
+        ("Wave 5", "1.61 βF"), ("Wave 10", "1.36 βG"), ("Wave 15", "1.15 βH"), ("Wave 20", " 970 βH"), ("Wave 25", "823.33 βI"),
+        ("Wave 30", "696.58 βJ (Predicted)"), ("Wave 35", "589.34 βK (Predicted)"), ("Wave 40"," 498.6 βL (Predicted)"), ("Wave 45", "421.84 βM (Predicted)"), ("Wave 50", "356.9 βN(Predicted)"),       
+        ("Wave 55", "301.95 βO (Predicted)"), ("Wave 60", "255.46 βP (Predicted)"), ("Wave 65", " 216.13 βQ (Predicted)"), ("Wave 70", "182.86 βR (Predicted))"), ("Wave 75", "154.71 βS (Predicted)"),
+        ("Wave 80", "130.89 βT (Predicted)"), ("Wave 85", "110.74 βU (Predicted)"), ("Wave 90", " 93.69 βV (Predicted)"), ("Wave 95", " 79.27 βW (Predicted)"), ("Wave 100", "67.06 βX (Predicted)"),
+    ]
 }
 
 # INTERFACE WEB (STREAMLIT)
