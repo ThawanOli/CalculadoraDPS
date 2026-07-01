@@ -27,7 +27,8 @@ def format_number(num):
 def parse_requirement(val_str):
     if not val_str or any(x in val_str.lower() for x in ['not possible', 'dont have data', 'possible', 'n temos']):
         return None
-    val_str = val_str.strip().replace(',', '')
+    clean_str = re.sub(r"\(.*?\)", "", val_str).strip()  # Remove qualquer texto entre parênteses
+    clean_str = clean_str.replace(' ', '')
     match = re.match(r"^([0-9.]+)\s*([a-zA-Zβ\d]+)?$", val_str)
     if not match: return None
     num_part = float(match.group(1))
@@ -159,11 +160,12 @@ with tab1:
         next_stage, next_req_raw = None, None
         
         for stage_name, req_str in stages:
+            #Filtro pra waves ditas impossiveis
+            if req_str and any(x in req_str.lower() for x in ['not possible', 'dont have data', 'possible', 'n temos']):
+                total_stages -= 1
+                continue
+
             req_val = parse_requirement(req_str)
-            if "not possible" in req_str.lower(): total_stages -= 1; continue
-            if "dont have data" in req_str.lower() or "n temos" in req_str.lower() or req_str == "N/A":
-                next_stage = f"{stage_name} (Dados ausentes)"
-                break
             if req_val is not None:
                 if user_dps >= req_val:
                     highest_passed = stage_name
@@ -172,6 +174,9 @@ with tab1:
                     next_stage = stage_name
                     next_req_raw = req_val
                     break
+            else:
+                # Se o dado for inválido ou indefinido, remove do cálculo de progresso sem quebrar o app
+                total_stages -= 1
                     
         # Exibe progresso visual
         pct = (passed_count / total_stages) if total_stages > 0 else 0.0
